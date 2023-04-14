@@ -50,7 +50,7 @@ steps:
   name: 'CopyFiles'
   displayName: 'Copy files to artifact directory'
   inputs:
-    SourceFolder: 'D:\CentennialCollege\Semester 4\Courses\DevOps\vsts-agent-win-x64-3.218.0\_work\1\s\MvcMovie\bin\$(buildConfiguration)\netcoreapp3.1\publish'
+    SourceFolder: '$(System.DefaultWorkingDirectory)/MvcMovie/bin/$(buildConfiguration)/netcoreapp3.1/publish'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
