@@ -9,7 +9,7 @@ trigger:
 pool:
   name: Default
   demands:
-   - agent.name -equals DESKTOP-IHB9SIS
+   - agent.name -equals BEAST
 
 variables:
   buildPlatform: 'Any CPU'
