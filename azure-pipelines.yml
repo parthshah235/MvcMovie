@@ -19,9 +19,8 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  name: 'NuGetToolInstaller'
   displayName: 'NuGet Tool Installer'
-  inputs:
-    versionSpec: '5.8.x'
 
 - task: NuGetCommand@2
   name: 'NuGetRestore'
@@ -30,12 +29,6 @@ steps:
     command: 'restore'
     restoreSolution: '$(solution)'
     feedsToUse: 'select'
-    arguments: '--no-cache'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'custom'
-    custom: 'version'
 
 - task: DotNetCoreCLI@2
   name: 'PublishToStaging'
@@ -43,16 +36,8 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
-- task: CopyFiles@2
-  name: 'CopyFiles'
-  displayName: 'Copy files to artifact directory'
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/MvcMovie/bin/Release/netcoreapp3.1/publish'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    
 - task: PublishBuildArtifacts@1
   name: 'PublishToPipe'
   displayName: 'Publish to Pipe'
