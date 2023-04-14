@@ -34,9 +34,9 @@ steps:
   name: 'PublishToStaging'
   displayName: 'Publish to Staging'
   inputs:
-    command: 'restore'
+    command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-build'
 
 - task: PublishBuildArtifacts@1
   name: 'PublishToPipe'
