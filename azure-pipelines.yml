@@ -36,7 +36,7 @@ steps:
   inputs:
     command: 'restore'
     publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --output "$(Build.ArtifactStagingDirectory)"'
 
 - task: PublishBuildArtifacts@1
   name: 'PublishToPipe'
