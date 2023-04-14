@@ -7,7 +7,7 @@ trigger:
 - none
 
 pool:
-  name: Default
+  name: BEAST
   demands:
    - agent.name -equals BEAST
 
