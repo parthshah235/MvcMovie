@@ -34,7 +34,7 @@ steps:
   name: 'PublishToStaging'
   displayName: 'Publish to Staging'
   inputs:
-    command: 'publish'
+    command: 'restore'
     publishWebProjects: true
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
