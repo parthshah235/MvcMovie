@@ -53,3 +53,9 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'MvcMovieProject'
     publishLocation: 'Container'
+
+- task: CmdLine@2
+  name: 'ListFiles'
+  displayName: 'List files in artifact directory'
+  inputs:
+    script: 'dir "$(Build.ArtifactStagingDirectory)" /s /b'
