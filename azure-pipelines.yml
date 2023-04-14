@@ -19,17 +19,15 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  name: 'NuGetToolInstaller'
   displayName: 'NuGet Tool Installer'
-  inputs:
-    versionSpec: '5.8.x'
 
-- task: NuGetCommand@2
-  name: 'NuGetRestore'
-  displayName: 'NuGet Restore'
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
   inputs:
     command: 'restore'
-    restoreSolution: '$(solution)'
-    feedsToUse: 'select'
+    projects: '**/*.csproj'
+
 
 - task: DotNetCoreCLI@2
   name: 'PublishToStaging'
