@@ -19,8 +19,9 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-  name: 'NuGetToolInstaller'
   displayName: 'NuGet Tool Installer'
+  inputs:
+    versionSpec: '5.8.x'
 
 - task: NuGetCommand@2
   name: 'NuGetRestore'
