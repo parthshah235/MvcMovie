@@ -19,15 +19,24 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-  name: 'NuGetToolInstaller'
   displayName: 'NuGet Tool Installer'
+  inputs:
+    versionSpec: '5.8.x'
+
+- task: NuGetCommand@2
+  name: 'NuGetRestore'
+  displayName: 'NuGet Restore'
+  inputs:
+    command: 'restore'
+    restoreSolution: '$(solution)'
+    feedsToUse: 'select'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet restore'
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
-
+    arguments: '--verbosity detailed'
 
 - task: DotNetCoreCLI@2
   name: 'PublishToStaging'
@@ -35,7 +44,7 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --verbosity detailed'
 
 - task: PublishBuildArtifacts@1
   name: 'PublishToPipe'
